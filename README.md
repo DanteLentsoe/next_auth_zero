@@ -1,3 +1,4 @@
+
 # Auth0 Next.js SDK Sample Application
 
 This sample demonstrates the integration of [Auth0 Next.js SDK](https://github.com/auth0/nextjs-auth0) into a Next.js application created using [create-next-app](https://nextjs.org/docs/api-reference/create-next-app). The sample is a companion to the [Auth0 Next.js SDK Quickstart](https://auth0.com/docs/quickstart/webapp/nextjs).
@@ -114,3 +115,5 @@ If you have found a bug or if you have a feature request, please report them at 
 ## License
 
 This project is licensed under the MIT license. See the [LICENSE](./LICENSE) file for more info.
+
+<img width="1398" alt="Screenshot 2022-01-26 at 21 27 27" src="https://user-images.githubusercontent.com/65385487/151285820-95c10a94-45c9-4f01-bcf3-4a65ccf5155c.png">
