@@ -31,24 +31,39 @@ const NavBar = () => {
           <Collapse isOpen={isOpen} navbar>
             <Nav className="mr-auto" navbar data-testid="navbar-items">
               <NavItem>
-                <PageLink href="/" className="nav-link" testId="navbar-home">
+                <PageLink href="/" className="nav-link" testId="navbar-home" icon={undefined} tabIndex={undefined}>
                   Home
                 </PageLink>
               </NavItem>
               {user && (
                 <>
                   <NavItem>
-                    <PageLink href="/csr" className="nav-link" testId="navbar-csr">
+                    <PageLink
+                      href="/csr"
+                      className="nav-link"
+                      testId="navbar-csr"
+                      icon={undefined}
+                      tabIndex={undefined}>
                       Client-side rendered page
                     </PageLink>
                   </NavItem>
                   <NavItem>
-                    <PageLink href="/ssr" className="nav-link" testId="navbar-ssr">
+                    <PageLink
+                      href="/ssr"
+                      className="nav-link"
+                      testId="navbar-ssr"
+                      icon={undefined}
+                      tabIndex={undefined}>
                       Server-side rendered page
                     </PageLink>
                   </NavItem>
                   <NavItem>
-                    <PageLink href="/external" className="nav-link" testId="navbar-external">
+                    <PageLink
+                      href="/external"
+                      className="nav-link"
+                      testId="navbar-external"
+                      icon={undefined}
+                      tabIndex={undefined}>
                       External API
                     </PageLink>
                   </NavItem>
@@ -62,7 +77,8 @@ const NavBar = () => {
                     href="/api/auth/login"
                     className="btn btn-primary btn-margin"
                     tabIndex={0}
-                    testId="navbar-login-desktop">
+                    testId="navbar-login-desktop"
+                    icon={undefined}>
                     Log in
                   </AnchorLink>
                 </NavItem>
@@ -76,7 +92,7 @@ const NavBar = () => {
                       className="nav-user-profile rounded-circle"
                       width="50"
                       height="50"
-                      decode="async"
+                      // decode="async"
                       data-testid="navbar-picture-desktop"
                     />
                   </DropdownToggle>
@@ -85,12 +101,22 @@ const NavBar = () => {
                       {user.name}
                     </DropdownItem>
                     <DropdownItem className="dropdown-profile" tag="span">
-                      <PageLink href="/profile" icon="user" testId="navbar-profile-desktop">
+                      <PageLink
+                        href="/profile"
+                        icon="user"
+                        testId="navbar-profile-desktop"
+                        className={undefined}
+                        tabIndex={undefined}>
                         Profile
                       </PageLink>
                     </DropdownItem>
                     <DropdownItem id="qsLogoutBtn">
-                      <AnchorLink href="/api/auth/logout" icon="power-off" testId="navbar-logout-desktop">
+                      <AnchorLink
+                        href="/api/auth/logout"
+                        icon="power-off"
+                        testId="navbar-logout-desktop"
+                        className={undefined}
+                        tabIndex={undefined}>
                         Log out
                       </AnchorLink>
                     </DropdownItem>
@@ -104,7 +130,8 @@ const NavBar = () => {
                   href="/api/auth/login"
                   className="btn btn-primary btn-block"
                   tabIndex={0}
-                  testId="navbar-login-mobile">
+                  testId="navbar-login-mobile"
+                  icon={undefined}>
                   Log in
                 </AnchorLink>
               </Nav>
@@ -123,7 +150,7 @@ const NavBar = () => {
                       className="nav-user-profile d-inline-block rounded-circle mr-3"
                       width="50"
                       height="50"
-                      decode="async"
+                      // decode="async"
                       data-testid="navbar-picture-mobile"
                     />
                     <h6 className="d-inline-block" data-testid="navbar-user-mobile">
@@ -132,7 +159,12 @@ const NavBar = () => {
                   </span>
                 </NavItem>
                 <NavItem>
-                  <PageLink href="/profile" icon="user" testId="navbar-profile-mobile">
+                  <PageLink
+                    href="/profile"
+                    icon="user"
+                    testId="navbar-profile-mobile"
+                    tabIndex={undefined}
+                    className={undefined}>
                     Profile
                   </PageLink>
                 </NavItem>
@@ -141,7 +173,8 @@ const NavBar = () => {
                     href="/api/auth/logout"
                     className="btn btn-link p-0"
                     icon="power-off"
-                    testId="navbar-logout-mobile">
+                    testId="navbar-logout-mobile"
+                    tabIndex={undefined}>
                     Log out
                   </AnchorLink>
                 </NavItem>
