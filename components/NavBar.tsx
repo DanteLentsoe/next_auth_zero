@@ -12,6 +12,7 @@ import {
   DropdownMenu,
   DropdownItem
 } from 'reactstrap';
+import { Box, Heading, Text, Button, Stack, Icon, useColorModeValue, createIcon } from '@chakra-ui/react';
 import { useUser } from '@auth0/nextjs-auth0';
 
 import PageLink from './PageLink';
@@ -73,14 +74,26 @@ const NavBar = () => {
             <Nav className="d-none d-md-block" navbar>
               {!isLoading && !user && (
                 <NavItem id="qsLoginBtn">
-                  <AnchorLink
+                  {/* <AnchorLink
                     href="/api/auth/login"
                     className="btn btn-primary btn-margin"
                     tabIndex={0}
                     testId="navbar-login-desktop"
                     icon={undefined}>
                     Log in
-                  </AnchorLink>
+                  </AnchorLink> */}
+                  <Button
+                    colorScheme={'green'}
+                    bg={'green.400'}
+                    rounded={'full'}
+                    as={'a'}
+                    href="/api/auth/login"
+                    px={6}
+                    _hover={{
+                      bg: 'green.500'
+                    }}>
+                    Login
+                  </Button>
                 </NavItem>
               )}
               {user && (
@@ -126,14 +139,19 @@ const NavBar = () => {
             </Nav>
             {!isLoading && !user && (
               <Nav className="d-md-none" navbar>
-                <AnchorLink
+                <Button
+                  colorScheme={'green'}
+                  bg={'green.400'}
+                  rounded={'full'}
+                  as={'a'}
+                  maxW={'90px'}
                   href="/api/auth/login"
-                  className="btn btn-primary btn-block"
-                  tabIndex={0}
-                  testId="navbar-login-mobile"
-                  icon={undefined}>
-                  Log in
-                </AnchorLink>
+                  px={6}
+                  _hover={{
+                    bg: 'green.500'
+                  }}>
+                  Login
+                </Button>
               </Nav>
             )}
             {user && (

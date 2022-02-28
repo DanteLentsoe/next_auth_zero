@@ -1,6 +1,6 @@
 import React from 'react';
 import { UserProvider } from '@auth0/nextjs-auth0';
-
+import { ChakraProvider } from '@chakra-ui/react';
 import Layout from '../components/Layout';
 
 import '@fortawesome/fontawesome-svg-core/styles.css';
@@ -12,9 +12,11 @@ initFontAwesome();
 export default function App({ Component, pageProps }) {
   return (
     <UserProvider>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <ChakraProvider>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </ChakraProvider>
     </UserProvider>
   );
 }

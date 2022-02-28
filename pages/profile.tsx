@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row, Col } from 'reactstrap';
 import { useUser, withPageAuthRequired } from '@auth0/nextjs-auth0';
-
+import Head from 'next/head';
 import Loading from '../components/Loading';
 import ErrorMessage from '../components/ErrorMessage';
 import Highlight from '../components/Highlight';
@@ -14,13 +14,17 @@ function Profile() {
       {isLoading && <Loading />}
       {user && (
         <>
+          <Head>
+            <title>Star Wars App</title>
+            <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+          </Head>
           <Row className="align-items-center profile-header mb-5 text-center text-md-left" data-testid="profile">
             <Col md={2}>
               <img
                 src={user.picture}
                 alt="Profile"
                 className="rounded-circle img-fluid profile-picture mb-3 mb-md-0"
-                decode="async"
+                // decode="async"
                 data-testid="profile-picture"
               />
             </Col>
@@ -32,7 +36,7 @@ function Profile() {
             </Col>
           </Row>
           <Row data-testid="profile-json">
-            <Highlight>{JSON.stringify(user, null, 2)}</Highlight>
+            <Highlight testId={undefined}>{JSON.stringify(user, null, 2)}</Highlight>
           </Row>
         </>
       )}
