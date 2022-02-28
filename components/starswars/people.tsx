@@ -1,8 +1,46 @@
 import React from 'react';
 import Head from 'next/head';
+import { useQuery } from 'react-query';
 import { Box, Heading, Container, Text, Button, Stack, Icon, useColorModeValue, createIcon } from '@chakra-ui/react';
 
+interface IPerson {
+  birth_year: string;
+  created: string;
+  edited: string;
+  eye_color: string;
+  films: Array<string>;
+  gender: string;
+  hair_color: string;
+  height: string;
+  homeworld: string;
+  mass: string;
+  name: string;
+  skin_color: string;
+  species: Array<any>;
+  starships: Array<string>;
+  url: string;
+  vehicles: Array<string>;
+}
+
+const getPeople = async () => {
+  const response = await fetch('https://swapi.dev/api/people/');
+
+  return response.json();
+};
+
 const People = () => {
+  const { data, status, error } = useQuery('planets', getPeople);
+
+  if (status === 'error') {
+    return <>Error Fetching Data</>;
+  }
+
+  if (status === 'loading') {
+    return <>Loading Data</>;
+  }
+
+  console.log('PEOPLE ', data);
+
   return (
     <>
       <div className="hero my-5 text-center" data-testid="hero">
@@ -10,7 +48,30 @@ const People = () => {
           <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap" rel="stylesheet" />
         </Head>
 
-        <Container maxW={'3xl'}>People Component</Container>
+        <Container maxW={'3xl'}>
+          {' '}
+          <Heading fontWeight={600} fontSize={{ base: '2xl', sm: '4xl', md: '6xl' }} lineHeight={'110%'}>
+            Star Wars Info <br />
+          </Heading>
+          People Component
+          {status === 'success' && (
+            <>
+              <div>
+                {data.results.map((person: IPerson, index: number) => {
+                  return (
+                    <>
+                      <Box p={5} mt={4} shadow="md" borderWidth="1px" key={index}>
+                        <Heading fontSize="xl">{person.name}</Heading>
+                        <Text mt={4}>Gender: {person.gender}</Text>
+                        <Text>Born: {person.birth_year}</Text>
+                      </Box>
+                    </>
+                  );
+                })}
+              </div>{' '}
+            </>
+          )}
+        </Container>
       </div>
     </>
   );
