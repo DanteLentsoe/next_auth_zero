@@ -1,8 +1,42 @@
 import React from 'react';
 import Head from 'next/head';
 import { Box, Heading, Container, Text, Button, Stack, Icon, useColorModeValue, createIcon } from '@chakra-ui/react';
+import { useQuery } from 'react-query';
+
+interface IPlant {
+  climate: string;
+  created: string;
+  diameter: string;
+  edited: string;
+  films: Array<string>;
+  gravity: string;
+  name: string;
+  orbital_period: string;
+  population: string;
+  residents: Array<string>;
+  rotation_period: string;
+  surface_water: string;
+  terrain: string;
+  url: string;
+}
+
+const getPlanets = async () => {
+  const response = await fetch('https://swapi.dev/api/planets/');
+
+  return response.json();
+};
 
 const Planets = () => {
+  const { data, status, error } = useQuery('planets', getPlanets);
+
+  if (status === 'error') {
+    return <>Error Fetching Data</>;
+  }
+
+  if (status === 'loading') {
+    return <>Loading Data</>;
+  }
+
   return (
     <>
       <div className="hero my-5 text-center" data-testid="hero">
@@ -15,6 +49,23 @@ const Planets = () => {
             Star Wars Info <br />
           </Heading>
           Planets Component
+          {status === 'success' && (
+            <>
+              <div>
+                {data.results.map((planet: IPlant, index: number) => {
+                  return (
+                    <>
+                      <Box p={5} mt={4} shadow="md" borderWidth="1px" key={index}>
+                        <Heading fontSize="xl">{planet.name}</Heading>
+                        <Text mt={4}>Terrain: {planet.terrain}</Text>
+                        <Text>Popuation: {planet.population}</Text>
+                      </Box>
+                    </>
+                  );
+                })}
+              </div>{' '}
+            </>
+          )}
         </Container>
       </div>
     </>

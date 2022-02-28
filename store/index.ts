@@ -2,7 +2,7 @@ import { atom, selector } from 'recoil';
 
 export const intialState = atom({
   key: 'switch-tab',
-  default: 'all-planets'
+  default: 'planets'
 });
 
 export const selectorStringTab = selector({
