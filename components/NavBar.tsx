@@ -12,7 +12,7 @@ import {
   DropdownMenu,
   DropdownItem
 } from 'reactstrap';
-import { Box, Heading, Text, Button, Stack, Icon, useColorModeValue, createIcon } from '@chakra-ui/react';
+import { Button } from '@chakra-ui/react';
 import { useUser } from '@auth0/nextjs-auth0';
 
 import PageLink from './PageLink';
@@ -40,12 +40,12 @@ const NavBar = () => {
                 <>
                   <NavItem>
                     <PageLink
-                      href="/csr"
+                      href="/stars-all"
                       className="nav-link"
                       testId="navbar-csr"
                       icon={undefined}
                       tabIndex={undefined}>
-                      Client-side rendered page
+                      All Star Was
                     </PageLink>
                   </NavItem>
                   <NavItem>
@@ -67,6 +67,36 @@ const NavBar = () => {
                       tabIndex={undefined}>
                       External API
                     </PageLink>
+                  </NavItem>
+                  <NavItem>
+                    <Button
+                      colorScheme={'green'}
+                      bg={'green.400'}
+                      rounded={'full'}
+                      marginLeft={1}
+                      as={'a'}
+                      href="/api/auth/login"
+                      px={6}
+                      _hover={{
+                        bg: 'green.500'
+                      }}>
+                      People
+                    </Button>
+                  </NavItem>
+                  <NavItem>
+                    <Button
+                      colorScheme={'green'}
+                      bg={'green.400'}
+                      rounded={'full'}
+                      marginLeft={1}
+                      as={'a'}
+                      href="/api/auth/login"
+                      px={6}
+                      _hover={{
+                        bg: 'green.500'
+                      }}>
+                      Planets
+                    </Button>
                   </NavItem>
                 </>
               )}
