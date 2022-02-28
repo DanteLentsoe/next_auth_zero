@@ -14,7 +14,8 @@ import {
 } from 'reactstrap';
 import { Button } from '@chakra-ui/react';
 import { useUser } from '@auth0/nextjs-auth0';
-
+import { intialState } from '../store';
+import { useRecoilState } from 'recoil';
 import PageLink from './PageLink';
 import AnchorLink from './AnchorLink';
 
@@ -22,6 +23,9 @@ const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { user, isLoading } = useUser();
   const toggle = () => setIsOpen(!isOpen);
+
+  // update store value
+  const [_, setPage] = useRecoilState(intialState);
 
   return (
     <div className="nav-container" data-testid="navbar">
@@ -74,11 +78,11 @@ const NavBar = () => {
                       bg={'green.400'}
                       rounded={'full'}
                       marginLeft={1}
-                      as={'a'}
-                      href="/api/auth/login"
-                      px={6}
                       _hover={{
                         bg: 'green.500'
+                      }}
+                      onClick={() => {
+                        setPage('people');
                       }}>
                       People
                     </Button>
@@ -89,11 +93,12 @@ const NavBar = () => {
                       bg={'green.400'}
                       rounded={'full'}
                       marginLeft={1}
-                      as={'a'}
-                      href="/api/auth/login"
                       px={6}
                       _hover={{
                         bg: 'green.500'
+                      }}
+                      onClick={() => {
+                        setPage('planets');
                       }}>
                       Planets
                     </Button>
