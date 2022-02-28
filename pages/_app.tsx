@@ -7,18 +7,22 @@ import { RecoilRoot } from 'recoil';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import initFontAwesome from '../utils/initFontAwesome';
 import '../styles/globals.css';
+import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
 
 initFontAwesome();
 
 export default function App({ Component, pageProps }: AppProps) {
+  const queryClient = new QueryClient();
   return (
     <UserProvider>
       <RecoilRoot>
-        <ChakraProvider>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </ChakraProvider>
+        <QueryClientProvider client={queryClient}>
+          <ChakraProvider>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </ChakraProvider>
+        </QueryClientProvider>
       </RecoilRoot>
     </UserProvider>
   );
