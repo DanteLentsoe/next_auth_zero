@@ -10,6 +10,6 @@ export const mockUser = {
   updated_at: null
 };
 
-export const withUserProvider = ({ user, profileUrl } = {}) => {
+export const withUserProvider = ({ user, profileUrl }: any = {}) => {
   return props => <UserProvider {...props} user={user} profileUrl={profileUrl} />;
 };
