@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import { useQuery } from 'react-query';
-import { Box, Heading, Container, Text, Button, Stack, Icon, useColorModeValue, createIcon } from '@chakra-ui/react';
+import { Box, Heading, Container, Text, createIcon, useToast } from '@chakra-ui/react';
 
 interface IPerson {
   birth_year: string;
@@ -29,7 +29,29 @@ const getPeople = async () => {
 };
 
 const People = () => {
-  const { data, status, error } = useQuery('planets', getPeople);
+  const toast = useToast();
+
+  const { data, status, error } = useQuery('planets', getPeople, {
+    staleTime: 2000,
+    onSuccess: () =>
+      toast({
+        position: 'bottom',
+        title: 'Data Fetched',
+        description: 'Data Fetched Successfully',
+        status: 'success',
+        duration: 4000,
+        isClosable: true
+      }),
+    onError: () =>
+      toast({
+        position: 'bottom',
+        title: 'Data Not Fetched',
+        description: 'Data fetching was unsuccessful',
+        status: 'error',
+        duration: 4000,
+        isClosable: true
+      })
+  });
 
   if (status === 'error') {
     return <>Error Fetching Data</>;
@@ -45,6 +67,7 @@ const People = () => {
     <>
       <div className="hero my-5 text-center" data-testid="hero">
         <Head>
+          <title> Star Wars | People</title>
           <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap" rel="stylesheet" />
         </Head>
 
