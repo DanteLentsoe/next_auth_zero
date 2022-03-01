@@ -5,7 +5,6 @@ import Planets from '../components/starswars/planets';
 import People from '../components/starswars/people';
 import { intialState } from '../store';
 import { useRecoilState } from 'recoil';
-import { Box, Heading, Container, Text, Button, Stack, Icon, useColorModeValue, createIcon } from '@chakra-ui/react';
 
 export default withPageAuthRequired(function SSRPage() {
   // reset default store values

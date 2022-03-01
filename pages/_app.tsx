@@ -7,8 +7,8 @@ import { RecoilRoot } from 'recoil';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import initFontAwesome from '../utils/initFontAwesome';
 import '../styles/globals.css';
-import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
-
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 initFontAwesome();
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -20,6 +20,7 @@ export default function App({ Component, pageProps }: AppProps) {
           <ChakraProvider>
             <Layout>
               <Component {...pageProps} />
+              <ReactQueryDevtools initialIsOpen={false} />
             </Layout>
           </ChakraProvider>
         </QueryClientProvider>
