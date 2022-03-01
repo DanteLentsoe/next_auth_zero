@@ -1,29 +1,38 @@
 import React from 'react';
 import Head from 'next/head';
-import { Box, Heading, Container, Text, Button, Stack, Icon, useColorModeValue, createIcon } from '@chakra-ui/react';
+import { Box, Heading, Container, Text, Link, Stack, Icon, useColorModeValue, createIcon } from '@chakra-ui/react';
 
 const Hero = () => {
   return (
     <>
       <div className="hero my-5 text-center" data-testid="hero">
         <Head>
+          <title> Star Wars API</title>
           <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap" rel="stylesheet" />
         </Head>
 
         <Container maxW={'3xl'}>
           <Stack as={Box} textAlign={'center'} spacing={{ base: 8, md: 14 }} py={{ base: 20, md: 36 }}>
             <Heading fontWeight={600} fontSize={{ base: '2xl', sm: '4xl', md: '6xl' }} lineHeight={'110%'}>
-              Make money from <br />
+              Application With Auto Syncing and Caching <br />
               <Text as={'span'} color={'green.400'}>
-                your audience
+                with React Query
               </Text>
             </Heading>
             <Text color={'gray.500'}>
-              Monetize your content by charging your most loyal readers and reward them loyalty points. Give back to
-              your loyal readers by granting them access to your pre-releases and sneak-peaks.
+              The purpose of this application (React/Next.js with Typescript and Chakra UI) is to form as a basis for
+              larger applications, thus I demonstrate data fetching, caching as well as state management (Recoil), and
+              Authentication (Auth0)
             </Text>
             <Stack direction={'column'} spacing={3} align={'center'} alignSelf={'center'} position={'relative'}>
               <Box>
+                <Text>
+                  Here is my{' '}
+                  <Link _hover={{ color: 'green' }} href="https://dantelentsoe.com">
+                    porfolio
+                  </Link>
+                </Text>
+
                 <Icon
                   as={Arrow}
                   color={useColorModeValue('gray.800', 'gray.300')}
@@ -39,7 +48,7 @@ const Hero = () => {
                   right={'-125px'}
                   top={'-15px'}
                   transform={'rotate(10deg)'}>
-                  Starting at $15/mo
+                  Get More From Dante
                 </Text>
               </Box>
             </Stack>

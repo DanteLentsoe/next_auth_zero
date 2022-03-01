@@ -4,7 +4,6 @@ import {
   Container,
   Navbar,
   NavbarToggler,
-  NavbarBrand,
   Nav,
   NavItem,
   UncontrolledDropdown,
@@ -18,6 +17,8 @@ import { intialState } from '../store';
 import { useRecoilState } from 'recoil';
 import PageLink from './PageLink';
 import AnchorLink from './AnchorLink';
+import LogoBrand from '../public/DanteLogog.png';
+import { Image } from '@chakra-ui/react';
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,7 +32,7 @@ const NavBar = () => {
     <div className="nav-container" data-testid="navbar">
       <Navbar color="light" light expand="md">
         <Container>
-          <NavbarBrand className="logo" />
+          <Image src={LogoBrand.src} alt="Dante Lentsoe developer branding" height={65} width={130} />
           <NavbarToggler onClick={toggle} data-testid="navbar-toggle" />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="mr-auto" navbar data-testid="navbar-items">
