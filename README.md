@@ -116,4 +116,5 @@ If you have found a bug or if you have a feature request, please report them at 
 
 This project is licensed under the MIT license. See the [LICENSE](./LICENSE) file for more info.
 
-<img width="1398" alt="Screenshot 2022-01-26 at 21 27 27" src="https://user-images.githubusercontent.com/65385487/151285820-95c10a94-45c9-4f01-bcf3-4a65ccf5155c.png">
+<img width="1396" alt="Screenshot 2022-03-01 at 14 17 48" src="https://user-images.githubusercontent.com/65385487/156212646-0e2d635d-076d-45fb-a294-e1f2bbdc6dda.png">
+
