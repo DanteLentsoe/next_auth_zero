@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Head from 'next/head';
-import { Box, Heading, Container, Text, createIcon, useToast } from '@chakra-ui/react';
+import { Box, Heading, Container, Text, createIcon, useToast, Button } from '@chakra-ui/react';
 import { useQuery } from 'react-query';
 
 interface IPlant {
@@ -20,14 +20,17 @@ interface IPlant {
   url: string;
 }
 
-const getPlanets = async () => {
-  const response = await fetch('https://swapi.dev/api/planets/');
-
-  return response.json();
-};
-
 const Planets = () => {
+  const [pageNumber, setPageNumber] = useState<number>(1);
+
+  const getPlanets = async () => {
+    const response = await fetch(`https://swapi.dev/api/planets/?page=${pageNumber}`);
+
+    return response.json();
+  };
+
   const toast = useToast();
+
   const { data, status, error } = useQuery('planets', getPlanets, {
     onSuccess: () =>
       toast({
@@ -46,9 +49,12 @@ const Planets = () => {
         status: 'error',
         duration: 4000,
         isClosable: true
-      })
+      }),
+    keepPreviousData: true,
+    staleTime: 5000
   });
 
+  console.log('test ', data);
   if (status === 'error') {
     return <>Error Fetching Data</>;
   }
@@ -69,7 +75,61 @@ const Planets = () => {
           <Heading fontWeight={600} fontSize={{ base: '2xl', sm: '4xl', md: '6xl' }} lineHeight={'110%'}>
             Star Wars Info <br />
           </Heading>
-          Planets Component
+          <Text>Planets Component</Text>
+          <Text>Current Page : {pageNumber}</Text>
+
+          <Button
+            colorScheme={'green'}
+            bg={'green.400'}
+            rounded={'full'}
+            mt={3}
+            marginLeft={1}
+            _hover={{
+              bg: 'green.500'
+            }}
+            onClick={() => {
+              // limit paging to page 1
+              if (pageNumber >= 2) {
+                pageNumber >= 1 && setPageNumber(pageNumber - 1);
+              } else {
+                toast({
+                  position: 'top',
+                  title: 'Paging Restriction',
+                  description: 'Cannot page lower than page 1',
+                  status: 'warning',
+                  duration: 4000,
+                  isClosable: true
+                });
+              }
+            }}>
+            Previous Page
+          </Button>
+          <Button
+            colorScheme={'green'}
+            bg={'green.400'}
+            rounded={'full'}
+            mt={3}
+            marginLeft={4}
+            _hover={{
+              bg: 'green.500'
+            }}
+            onClick={() => {
+              // limit paging to page 6
+              if (pageNumber >= 6) {
+                toast({
+                  position: 'top',
+                  title: 'Paging Restriction',
+                  description: 'Cannot page higher than page 6',
+                  status: 'warning',
+                  duration: 4000,
+                  isClosable: true
+                });
+              } else {
+                setPageNumber(pageNumber + 1);
+              }
+            }}>
+            Next Page
+          </Button>
           {status === 'success' && (
             <>
               <div>
@@ -77,7 +137,9 @@ const Planets = () => {
                   return (
                     <>
                       <Box p={5} mt={4} shadow="md" borderWidth="1px" key={index}>
-                        <Heading fontSize="xl">{planet.name}</Heading>
+                        <Heading fontSize="xl" key={index}>
+                          {planet.name}
+                        </Heading>
                         <Text mt={4}>Terrain: {planet.terrain}</Text>
                         <Text>Popuation: {planet.population}</Text>
                       </Box>

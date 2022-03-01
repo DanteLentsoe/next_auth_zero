@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Head from 'next/head';
 import { useQuery } from 'react-query';
-import { Box, Heading, Container, Text, createIcon, useToast } from '@chakra-ui/react';
+import { Box, Heading, Container, Text, createIcon, useToast, Button } from '@chakra-ui/react';
 
 interface IPerson {
   birth_year: string;
@@ -29,6 +29,7 @@ const getPeople = async () => {
 };
 
 const People = () => {
+  const [pageNumber, setPageNumber] = useState<number>(1);
   const toast = useToast();
 
   const { data, status, error } = useQuery('planets', getPeople, {
@@ -61,8 +62,6 @@ const People = () => {
     return <>Loading Data</>;
   }
 
-  console.log('PEOPLE ', data);
-
   return (
     <>
       <div className="hero my-5 text-center" data-testid="hero">
@@ -76,7 +75,60 @@ const People = () => {
           <Heading fontWeight={600} fontSize={{ base: '2xl', sm: '4xl', md: '6xl' }} lineHeight={'110%'}>
             Star Wars Info <br />
           </Heading>
-          People Component
+          <Text> People Component</Text>
+          <Text>Current Page : {pageNumber}</Text>
+          <Button
+            colorScheme={'green'}
+            bg={'green.400'}
+            rounded={'full'}
+            mt={3}
+            marginLeft={1}
+            _hover={{
+              bg: 'green.500'
+            }}
+            onClick={() => {
+              // limit paging to page 1
+              if (pageNumber >= 2) {
+                pageNumber >= 1 && setPageNumber(pageNumber - 1);
+              } else {
+                toast({
+                  position: 'top',
+                  title: 'Paging Restriction',
+                  description: 'Cannot page lower than page 1',
+                  status: 'warning',
+                  duration: 4000,
+                  isClosable: true
+                });
+              }
+            }}>
+            Previous Page
+          </Button>
+          <Button
+            colorScheme={'green'}
+            bg={'green.400'}
+            rounded={'full'}
+            mt={3}
+            marginLeft={4}
+            _hover={{
+              bg: 'green.500'
+            }}
+            onClick={() => {
+              // limit paging to page 6
+              if (pageNumber >= 6) {
+                toast({
+                  position: 'top',
+                  title: 'Paging Restriction',
+                  description: 'Cannot page higher than page 6',
+                  status: 'warning',
+                  duration: 4000,
+                  isClosable: true
+                });
+              } else {
+                setPageNumber(pageNumber + 1);
+              }
+            }}>
+            Next Page
+          </Button>
           {status === 'success' && (
             <>
               <div>

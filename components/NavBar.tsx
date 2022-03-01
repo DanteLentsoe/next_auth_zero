@@ -53,7 +53,7 @@ const NavBar = () => {
                       All Star Was
                     </PageLink>
                   </NavItem>
-                  <NavItem>
+                  {/* <NavItem>
                     <PageLink
                       href="/ssr"
                       className="nav-link"
@@ -62,8 +62,8 @@ const NavBar = () => {
                       tabIndex={undefined}>
                       Server-side rendered page
                     </PageLink>
-                  </NavItem>
-                  <NavItem>
+                  </NavItem> */}
+                  {/* <NavItem>
                     <PageLink
                       href="/external"
                       className="nav-link"
@@ -72,7 +72,7 @@ const NavBar = () => {
                       tabIndex={undefined}>
                       External API
                     </PageLink>
-                  </NavItem>
+                  </NavItem> */}
                   <NavItem>
                     <Button
                       colorScheme={'green'}
